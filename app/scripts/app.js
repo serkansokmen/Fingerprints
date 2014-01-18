@@ -1,18 +1,44 @@
 'use strict';
 
-angular.module('guesswhoApp', [
+angular.module('fingerprintsApp', [
   'ngCookies',
   'ngResource',
   'ngSanitize',
-  'ngRoute'
+  'ui.router'
 ])
-  .config(function ($routeProvider) {
-    $routeProvider
-      .when('/', {
-        templateUrl: 'views/main.html',
-        controller: 'MainCtrl'
+  .config(function ($stateProvider) {
+    // 'initializing', 'dashboard', 'loading', 'question', 'checkingAnswer'
+    $stateProvider
+      .state('home', {
+        url: '/home',
+        templateUrl: 'views/home.html',
+        controller: 'HomeCtrl'
       })
-      .otherwise({
-        redirectTo: '/'
-      });
+      .state('stamps', {
+        url: '/stamps',
+        templateUrl: 'views/stamps/base.html'
+      })
+      .state('stamps.create', {
+        url: '/create',
+        templateUrl: 'views/stamps/create.html',
+        controller: function($scope) {
+          $scope.active = 'dashboard';
+          $scope.score = 200;
+        }
+      })
+      .state('stamps.list', {
+        url: '/list',
+        templateUrl: 'views/stamps/list.html',
+        controller: function($scope) {
+          $scope.active = 'question';
+          $scope.question = {};
+        }
+      })
+      // .when('/', {
+      //   templateUrl: 'views/main.html',
+      //   controller: 'MainCtrl'
+      // })
+      // .otherwise({
+      //   redirectTo: '/'
+      // });
   });
