@@ -59,6 +59,12 @@ body {
   margin-top: 28px;
 }
 
+/* Processing Canvas Properties */
+.pjs-canvas {
+  width: 680px;
+  height: 360px;
+}
+
 /* Responsive: Portrait tablets and up */
 @media screen and (min-width: 768px) {
   /* Remove the padding we set earlier */

@@ -21,10 +21,7 @@ angular.module('fingerprintsApp', [
       .state('stamps.create', {
         url: '/create',
         templateUrl: 'views/stamps/create.html',
-        controller: function($scope) {
-          $scope.active = 'dashboard';
-          $scope.score = 200;
-        }
+        controller: 'StampsCreateController'
       })
       .state('stamps.list', {
         url: '/list',
