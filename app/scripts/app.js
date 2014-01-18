@@ -4,13 +4,14 @@ angular.module('fingerprintsApp', [
   'ngCookies',
   'ngResource',
   'ngSanitize',
-  'ui.router'
+  'ui.router',
+  'colorpicker.module'
 ])
   .config(function ($stateProvider) {
     // 'initializing', 'dashboard', 'loading', 'question', 'checkingAnswer'
     $stateProvider
       .state('home', {
-        url: '/home',
+        url: '/',
         templateUrl: 'views/home.html',
         controller: 'HomeCtrl'
       })
@@ -26,10 +27,7 @@ angular.module('fingerprintsApp', [
       .state('stamps.list', {
         url: '/list',
         templateUrl: 'views/stamps/list.html',
-        controller: function($scope) {
-          $scope.active = 'question';
-          $scope.question = {};
-        }
+        controller: 'StampsListController'
       })
       // .when('/', {
       //   templateUrl: 'views/main.html',

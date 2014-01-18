@@ -1,7 +1,22 @@
 <h2>Create</h2>
 
-<input type="range" min="1" max="100" ng-model="size" />
+<div class="row">
+    <div class="col-xs-12 col-sm-12 col-md-8 col-lg-8 pjs-canvas-container">
+        <canvas processing="sketch" ng-click="move($sketch)"></canvas>
+    </div>
+    <div class="col-xs-12 col-sm-12 col-md-4 col-lg-4">
+        <div ng-repeat="fp in fingerprints" class="btn-group">
+            <button type="button" class="btn btn-link" ng-click="selectFingerprint(fp)">
+                <img class="img-thumbnail" ng-src="{{ fp.url }}" width="40" height="40">
+            </button>
+        </div>
+        <button colorpicker="hex" type="button" colorpicker-position="top"
+                class="btn btn-default" ng-model="newStamp.color" value="">Change color</button>
+        <pre>{{ newStamp.color }}</pre>
+    </div>
+</div>
+
 <br>
 <center>
-    <canvas processing="sketch" class="pjs-canvas" ng-click="move($sketch)"></canvas>
+
 </center>
