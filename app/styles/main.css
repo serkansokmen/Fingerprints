@@ -61,7 +61,7 @@ body {
 
 /* Processing Canvas Properties */
 .pjs-canvas-container {
-  width: 455px;
+  width: 100%;
   height: 380px;
 }
 

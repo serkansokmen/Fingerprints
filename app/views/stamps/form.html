@@ -1,20 +1,20 @@
-<h2>Create</h2>
-
-<div class="row">
-    <div class="col-xs-12 col-sm-12 col-md-4 col-lg-4">
-        <div class="btn-group well">
-            <button type="button" class="btn btn-link btn-xs" ng-click="selectFingerprint(fp)" ng-repeat="fp in fingerprints">
-                <img class="img-thumbnail" ng-src="{{ fp.thumbnail }}" width="40" height="40">
+<h2>Create
+<input class="btn btn-default btn-xs pull-right" type="button" ng-click="showDebug = !showDebug" value="Show Debug">
+<pre ng-show="showDebug">{{ newStamp | json }}</pre></h2>
+<div class="well">
+    <div class="row">
+        <div class="col-xs-10 col-sm-10 col-md-10 col-lg-10">
+            <button type="button" class="btn btn-default btn-xs" ng-click="selectFingerprint(fp)" ng-repeat="fp in fingerprints" ng-class="{'btn-info': fp == newStamp.fingerprint}" style="margin:0 10px 10px 0;">
+                <div caman-thumb source="fp.thumbnail" thumn-width="35" thumb-height="35"></div>
             </button>
         </div>
-        <div color-picker model="newStamp.color"></div>
-    </div>
-    <div class="col-xs-12 col-sm-12 col-md-8 col-lg-8">
-        <div class="panel panel-default">
-            <div class="panel-body pjs-canvas-container">
-               <canvas processing="sketch" ng-click="move($sketch)"></canvas>
-            </div>
+        <div class="col-xs-2 col-sm-2 col-md-2 col-lg-2">
+            <div color-picker model="newStamp.color"></div>
         </div>
-
+    </div>
+</div>
+<div class="panel panel-default">
+    <div class="panel-body pjs-canvas-container" style="position:relative;" mover ng-click="moveFingerprint($event)">
+        <div caman color="newStamp.color" ng-repeat="fp in fingerprints" top="newStamp.top" left="newStamp.left" source="fp.thumbnail" ng-if="newStamp.fingerprint == fp"></div>
     </div>
 </div>

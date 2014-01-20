@@ -3,13 +3,10 @@
 angular.module('fingerprintsApp').
     directive('colorPicker', function($rootScope, $window, $log){
         return {
+            restrict: 'A',
             scope: {
                 model: '='
             },
-            restrict: 'EA',
-            template: '<input type="color" class="form-control input-lg" ng-model="model">',
-            link: function($scope, iElm, iAttrs, controller) {
-
-            }
+            template: '<input type="color" style="border:none; background-color: {{ model }};" class="form-control input-lg" ng-model="model">'
         };
     });

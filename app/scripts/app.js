@@ -4,11 +4,10 @@ angular.module('fingerprintsApp', [
   'ngCookies',
   'ngResource',
   'ngSanitize',
-  'ui.router',
-  'colorpicker.module'
+  'ui.router'
 ])
   .config(function ($stateProvider) {
-    // 'initializing', 'dashboard', 'loading', 'question', 'checkingAnswer'
+
     $stateProvider
       .state('home', {
         url: '/',
@@ -28,17 +27,5 @@ angular.module('fingerprintsApp', [
         url: '/form',
         templateUrl: 'views/stamps/form.html',
         controller: 'StampFormController'
-      })
-      .state('stamps.detail', {
-        url: '/:itemId',
-        templateUrl: 'views/stamps/detail.html',
-        controller: 'StampController'
       });
-      // .when('/', {
-      //   templateUrl: 'views/main.html',
-      //   controller: 'MainCtrl'
-      // })
-      // .otherwise({
-      //   redirectTo: '/'
-      // });
   });
