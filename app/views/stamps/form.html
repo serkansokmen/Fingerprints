@@ -5,16 +5,12 @@
         </div>
     </div>
     <div class="well">
-        <div class="row">
-            <div class="col-xs-10 col-sm-10 col-md-10 col-lg-10">
-                <button type="button" class="btn btn-xs pull-left" ng-click="selectFingerprint(fp)" ng-repeat="fp in fingerprints" ng-class="{'btn-default': fp == newStamp.fingerprint}" style="margin:0 10px 10px 0;">
-                    <div fingerprint-thumb source="fp.thumbnail" thumn-width="35" thumb-height="35"></div>
-                </button>
-            </div>
-            <div class="col-xs-2 col-sm-2 col-md-2 col-lg-2">
-                <div class="btn btn-default" color-picker model="newStamp.color"></div>
-            </div>
-        </div>
-        <button type="submit" class="btn btn-primary">Save</button>
+        <label>Choose a fingerprint</label>
+        <button type="button" class="btn btn-link btn-xs" ng-click="selectFingerprint(fp)" ng-repeat="fp in fingerprints" ng-class="{'btn-default': fp == newStamp.fingerprint}" style="margin:0 10px 10px 0;">
+            <div fingerprint-thumb source="fp.thumbnail" thumn-width="35" thumb-height="35"></div>
+        </button>
+        <hr>
+        <button class="btn btn-success" type="button" colorpicker colorpicker-position="top" ng-model="newStamp.color">Select a color</button>
+        <button type="submit" class="btn btn-primary"><i class="fa fa-send"></i> Save</button>
     </div>
 </form>

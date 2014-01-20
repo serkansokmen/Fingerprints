@@ -7,6 +7,6 @@ angular.module('fingerprintsApp').
             scope: {
                 model: '='
             },
-            template: '<input type="color" style="border:none; background-color: {{ model }};" class="btn" ng-model="model">'
+            template: '<button type="color" style="border:none; background-color: {{ model }};" class="btn" ng-model="model"></button>'
         };
     });

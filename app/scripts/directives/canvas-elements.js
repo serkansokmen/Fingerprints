@@ -41,7 +41,6 @@ angular.module('fingerprintsApp').
             template: '<canvas style="position:absolute; top: {{ model.top-width/2 }}px; left: {{ model.left-height/2 }}px;"></canvas>',
             replace: true,
             link: function($scope, iElm, iAttrs, controller) {
-                $log.info($scope.model);
                 $scope.width = 80;
                 $scope.height = 80;
                 Caman(iElm[0], $scope.model.fingerprint.thumbnail, function () {

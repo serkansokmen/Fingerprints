@@ -4,10 +4,12 @@ angular.module('fingerprintsApp', [
   'ngCookies',
   'ngResource',
   'ngSanitize',
+  'ngAnimate',
+  'colorpicker.module',
   'ui.router',
   'firebase'
 ]).
-config(function ($stateProvider) {
+config(function ($stateProvider, $urlRouterProvider) {
   $stateProvider
     .state('home', {
       url: '/',
@@ -28,5 +30,7 @@ config(function ($stateProvider) {
       templateUrl: 'views/stamps/form.html',
       controller: 'StampFormController'
     });
+
+    $urlRouterProvider.otherwise('/');
 }).
 constant('FB_URL', "https://fingerprints.firebaseio.com");
