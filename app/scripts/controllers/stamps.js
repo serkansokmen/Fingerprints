@@ -1,7 +1,7 @@
 'use strict';
 
 angular.module('fingerprintsApp')
-.controller('StampFormController', function ($scope, $log, FB_URL, FingerprintsService, $firebase){
+.controller('StampFormController', function ($scope, $state, $log, FB_URL, FingerprintsService, $firebase){
 
     $scope.fingerprints = FingerprintsService.getFingerprints();
     resetNewStamp();
@@ -12,6 +12,7 @@ angular.module('fingerprintsApp')
     $scope.addStamp = function(){
         var newStamp = $scope.newStamp;
         $scope.stamps.$add(newStamp);
+        $state.go('stamps.list');
         resetNewStamp();
     }
 
