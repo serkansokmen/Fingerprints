@@ -1,0 +1,20 @@
+<h2>Create</h2>
+
+<div class="row">
+    <div class="col-xs-12 col-sm-12 col-md-4 col-lg-4">
+        <div class="btn-group well">
+            <button type="button" class="btn btn-link btn-xs" ng-click="selectFingerprint(fp)" ng-repeat="fp in fingerprints">
+                <img class="img-thumbnail" ng-src="{{ fp.thumbnail }}" width="40" height="40">
+            </button>
+        </div>
+        <div color-picker model="newStamp.color"></div>
+    </div>
+    <div class="col-xs-12 col-sm-12 col-md-8 col-lg-8">
+        <div class="panel panel-default">
+            <div class="panel-body pjs-canvas-container">
+               <canvas processing="sketch" ng-click="move($sketch)"></canvas>
+            </div>
+        </div>
+
+    </div>
+</div>

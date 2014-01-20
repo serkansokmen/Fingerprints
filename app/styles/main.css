@@ -60,9 +60,9 @@ body {
 }
 
 /* Processing Canvas Properties */
-.pjs-canvas {
-  width: 680px;
-  height: 360px;
+.pjs-canvas-container {
+  width: 455px;
+  height: 380px;
 }
 
 /* Responsive: Portrait tablets and up */

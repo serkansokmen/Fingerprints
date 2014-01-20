@@ -1,14 +1,13 @@
 'use strict';
 
 angular.module('fingerprintsApp')
-    .controller('StampsCreateController', function ($scope, $log, FingerprintsService) {
+    .controller('StampFormController', function ($scope, $log, FingerprintsService) {
 
         $scope.fingerprints = FingerprintsService.getFingerprints();
         $scope.newStamp = {
-            size: 200,
             left: 400,
             top: 200,
-            color: '#cccccc',
+            color: '#000000',
             fingerprint: $scope.fingerprints[0]
         }
 
@@ -16,9 +15,8 @@ angular.module('fingerprintsApp')
             $scope.newStamp.fingerprint = fp;
         };
 
-
         $scope.resetColor = function() {
-          $scope.newStamp.color = '#cccccc';
+            $scope.newStamp.color = '#ff0000';
         };
         $scope.resetColor();
 
@@ -28,27 +26,76 @@ angular.module('fingerprintsApp')
 
             // Initialize sketch
             sketch.setup = function() {
-                sketch.frameRate(60);
-            };
+                sketch.frameRate(30);
+                $scope.$watch('newStamp.fingerprint', function(newValue, oldValue) {
+                    sketch.fpImage = sketch.loadImage(newValue.thumbnail);
+                });
+                $scope.$watch('newStamp.color', function(newValue, oldValue) {
+                    var hexStr = newValue.split('#')[1],
+                        octa = +('0xff' + hexStr),
+                        color = sketch.color(octa);
 
-            $scope.$watch('newStamp.fingerprint', function(newValue, oldValue) {
-                sketch.fpImage = sketch.loadImage(newValue.url);
-            });
+                    sketch.fillColor = color;
+
+                    sketch.fpImage.loadPixels();
+                    for (var i = 0; i < (sketch.fpImage.width*sketch.fpImage.height/2)-sketch.fpImage.width/2; i++) {
+                        sketch.fpImage.pixels[i] = color;
+                    }
+                    sketch.fpImage.updatePixels();
+                });
+
+                $scope.newStamp.left = sketch.width/2;
+                $scope.newStamp.top = sketch.height/2;
+            };
 
             // Main draw loop
             sketch.draw = function() {
+
                 sketch.background(255);
-                sketch.fill($scope.newStamp.color);
+                sketch.noStroke();
+                sketch.fill(sketch.fillColor);
+                // sketch.rect($scope.newStamp.left - sketch.fpImage.width/2, $scope.newStamp.top - sketch.fpImage.height/2, sketch.fpImage.width, sketch.fpImage.height);
                 sketch.image(sketch.fpImage, $scope.newStamp.left - sketch.fpImage.width/2, $scope.newStamp.top - sketch.fpImage.height/2);
-                // sketch.ellipse($scope.newStamp.left, $scope.newStamp.top, $scope.newStamp.size, $scope.newStamp.size);
             };
 
             $scope.move = function($sketch){
                 $scope.newStamp.left = $sketch.mouseX;
                 $scope.newStamp.top = $sketch.mouseY;
             };
+
+            function d2h(d) {return d.toString(16);}
+            function h2d(h) {return parseInt(h,16);}
         };
     }).
-    controller('StampsListController', function($scope) {
-        $scope.stampsList = [];
+    controller('StampsController', function($scope, FingerprintsService) {
+
+        $scope.fingerprints = FingerprintsService.getFingerprints();
+
+        // Processing Sketch
+        $scope.sketch = function(sketch) {
+            /*
+            stamp.image = new sketch.PImage();
+
+            // Initialize sketch
+            sketch.setup = function() {
+                sketch.frameRate(60);
+            };
+
+            // Main draw loop
+            sketch.draw = function() {
+                sketch.background(255);
+                sketch.image(sketch.fpImage, stamp.left - sketch.fpImage.width/2, stamp.top - sketch.fpImage.height/2);
+            };
+            */
+        };
+    }).
+    controller('StampController', function($scope, FingerprintsService) {
+
+        $scope.fingerprints = FingerprintsService.getFingerprints();
+        $scope.stamp = {
+            left: 400,
+            top: 200,
+            color: '#000000',
+            fingerprint: $scope.fingerprints[0]
+        };
     });

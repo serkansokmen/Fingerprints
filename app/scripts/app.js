@@ -19,16 +19,21 @@ angular.module('fingerprintsApp', [
         url: '/stamps',
         templateUrl: 'views/stamps/base.html'
       })
-      .state('stamps.create', {
-        url: '/create',
-        templateUrl: 'views/stamps/create.html',
-        controller: 'StampsCreateController'
-      })
       .state('stamps.list', {
         url: '/list',
         templateUrl: 'views/stamps/list.html',
-        controller: 'StampsListController'
+        controller: 'StampsController'
       })
+      .state('stamps.form', {
+        url: '/form',
+        templateUrl: 'views/stamps/form.html',
+        controller: 'StampFormController'
+      })
+      .state('stamps.detail', {
+        url: '/:itemId',
+        templateUrl: 'views/stamps/detail.html',
+        controller: 'StampController'
+      });
       // .when('/', {
       //   templateUrl: 'views/main.html',
       //   controller: 'MainCtrl'

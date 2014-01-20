@@ -13,7 +13,7 @@ angular.module('fingerprintsApp').
                 resizeSketch();
 
                 function resizeSketch() {
-                    $scope.$sketch.size(iElm.parent().outerWidth() - 10, iElm.parent().outerHeight());
+                    $scope.$sketch.size(iElm.parent().outerWidth() - 30, iElm.parent().outerHeight() - 30);
                 }
             }
         };
