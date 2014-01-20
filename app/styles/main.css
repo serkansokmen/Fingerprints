@@ -59,10 +59,10 @@ body {
   margin-top: 28px;
 }
 
-/* Processing Canvas Properties */
-.pjs-canvas-container {
+/* Darwing and Preview Canvas */
+.canvas-container {
   width: 100%;
-  height: 380px;
+  height: 320px;
 }
 
 /* Responsive: Portrait tablets and up */
