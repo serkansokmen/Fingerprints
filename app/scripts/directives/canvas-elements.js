@@ -43,11 +43,13 @@ angular.module('fingerprintsApp').
             link: function($scope, iElm, iAttrs, controller) {
                 $scope.width = 80;
                 $scope.height = 80;
-                Caman(iElm[0], $scope.model.fingerprint.thumbnail, function () {
-                    $scope.width = this.width;
-                    $scope.height = this.height;
-                    this.colorize($scope.model.color, 100);
-                    this.render();
+                $scope.$watch('model.fingerprint.thumbnail', function(newVal, oldVal){
+                    Caman(iElm[0], newVal, function () {
+                        $scope.width = this.width;
+                        $scope.height = this.height;
+                        this.colorize($scope.model.color, 100);
+                        this.render();
+                    });
                 });
             }
         };

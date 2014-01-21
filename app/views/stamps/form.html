@@ -10,6 +10,9 @@
             <div fingerprint-thumb source="fp.thumbnail" thumn-width="35" thumb-height="35"></div>
         </button>
         <hr>
+
+        <a href="javascript://" class="btn btn-warning" ng-click="login()" ng-if="!user">Login</a>
+        <a href="javascript://" class="btn btn-info" ng-click="logout()" ng-if="user">Logout</a>
         <button class="btn btn-success" type="button" colorpicker colorpicker-position="top" ng-model="newStamp.color">Select a color</button>
         <button type="submit" class="btn btn-primary"><i class="fa fa-send"></i> Save</button>
     </div>
