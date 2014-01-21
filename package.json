@@ -1,8 +1,8 @@
 {
-  "name": "guesswho",
+  "name": "Fingerprints",
   "description": "Forget your friends' names easily?",
   "version": "0.0.1",
-  "repository": "https://github.com/serkansokmen/guesswho",
+  "repository": "https://github.com/serkansokmen/Fingerprints",
   "dependencies": {},
   "devDependencies": {
     "grunt": "~0.4.1",
