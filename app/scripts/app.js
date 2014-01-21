@@ -9,7 +9,7 @@ angular.module('fingerprintsApp', [
   'ui.router',
   'firebase'
 ]).
-config(function ($stateProvider, $urlRouterProvider) {
+config(function ($stateProvider, $urlRouterProvider){
   $stateProvider
     .state('home', {
       url: '/',

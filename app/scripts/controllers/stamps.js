@@ -17,7 +17,7 @@ angular.module('fingerprintsApp')
     $scope.login = function(){
         auth.login('facebook', {
             rememberMe: true,
-            scope: 'email, user_likes'
+            scope: 'email'
         });
     };
     $scope.logout = function(){
