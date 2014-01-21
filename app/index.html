@@ -12,7 +12,10 @@
         <!-- Place favicon.ico and apple-touch-icon.png in the root directory -->
         <!-- build:css styles/vendor.css -->
         <!-- bower:css -->
-        <link rel="stylesheet" href="bower_components/bootstrap/dist/css/bootstrap.css" />
+        <link rel="stylesheet" href="bower_components/bootswatch/flatly/bootstrap.css" />
+        <link rel="stylesheet" href="bower_components/font-awesome/css/font-awesome.css" />
+        <link rel="stylesheet" href="bower_components/angular-bootstrap-colorpicker/css/colorpicker.css" />
+
         <!-- endbower -->
         <!-- endbuild -->
         <!-- build:css({.tmp,app}) styles/main.css -->
@@ -33,13 +36,12 @@
                 </div>
 
                 <!-- Collect the nav links, forms, and other content for toggling -->
-                <div class="collapse navbar-collapse navbar-ex1-collapse">
-                    <ul class="nav navbar-nav navbar-right">
-                        <li><a ui-sref="stamps.list">Show Composite</a></li>
-                    </ul>
-                </div><!-- /.navbar-collapse -->
+                <ul class="nav navbar-nav pull-right">
+                    <li><a ui-sref="stamps.list"><i class="fa fa-picture-o"></i> Show Composite</a></li>
+                </ul>
             </nav>
             <div ui-view></div>
+            <br>
             <footer class="footer">
               <p>&copy; Fingerprints 2014</p>
             </footer>
@@ -62,7 +64,7 @@
         <script src="bower_components/caman/dist/caman.min.js"></script>
         <script src="bower_components/caman/dist/caman.full.min.js"></script>
         <script src="bower_components/firebase/firebase.js"></script>
-        <script src="bower_components/angular-ui-router/release/angular-ui-router.js"></script>
+        <!-- <script src="bower_components/angular-ui-router/release/angular-ui-router.js"></script> -->
         <script src="bower_components/angular-animate/angular-animate.js"></script>
         <script src="bower_components/angular-bootstrap-colorpicker/js/bootstrap-colorpicker-module.js"></script>
         <script src="bower_components/firebase-simple-login/firebase-simple-login.js"></script>
