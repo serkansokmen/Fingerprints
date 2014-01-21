@@ -26,7 +26,7 @@ angular.module('fingerprintsApp')
 
     $scope.addStamp = function(){
         var newStamp = $scope.newStamp;
-        newStamp.userId = $scope.user.id;
+        newStamp.userId = $scope.user.uid;
         newStamp.createdAt = new Date();
         $scope.stamps.$add(newStamp);
         $state.go('stamps.list');
