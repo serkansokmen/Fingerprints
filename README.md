@@ -1,3 +1,3 @@
 # Fingerprints
 
-### Fingerprints Art Project
+An art project collaboration
