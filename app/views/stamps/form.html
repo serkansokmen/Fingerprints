@@ -1,19 +1,27 @@
-<form ng-submit="addStamp()" role="form" novalidate ng-show="user">
+<form ng-submit="addStamp()" role="form" novalidate ng-if="user" class="animated" ng-class="{
+      'slideInDown': user,
+      'slideOutUp': !user
+    }">
+    <input type="hidden" name="">
     <div class="panel panel-default">
         <div class="panel-body canvas-container" style="position:relative;" mover="" ng-click="moveFingerprint($event)">
-            <div fingerprint color="newStamp.color" ng-repeat="fp in fingerprints" top="newStamp.top" left="newStamp.left" source="fp.thumbnail" ng-if="newStamp.fingerprint == fp"></div>
+            <div fingerprint
+            color="newStamp.color"
+            ng-if="newStamp.fingerprint == fp"
+            ng-repeat="fp in fingerprints"
+            top="newStamp.top"
+            left="newStamp.left"
+            source="fp.thumbnail"></div>
         </div>
     </div>
     <div class="well well-sm">
-        <div ng-if="user">
-            <label ng-class="{'text-muted': !user}">Choose a fingerprint</label>
-            <button type="button" class="btn btn-link btn-xs" ng-disabled="!user" ng-click="selectFingerprint(fp)" ng-repeat="fp in fingerprints" ng-class="{'btn-default': fp == newStamp.fingerprint}" style="margin:0 10px 10px 0;">
-                <div fingerprint-thumb source="fp.thumbnail" thumn-width="35" thumb-height="35"></div>
-            </button>
-            <div class="btn-group">
-                <button class="btn btn-success" type="button" colorpicker colorpicker-position="top" ng-model="newStamp.color">Select a color</button>
-                <button type="submit" class="btn btn-primary"><i class="fa fa-send"></i> Save</button>
-            </div>
+        <label ng-class="{'text-muted': !user}">Choose a fingerprint</label>
+        <button type="button" class="btn btn-link btn-xs animated-repeater" ng-disabled="!user" ng-click="selectFingerprint(fp)" ng-repeat="fp in fingerprints" ng-class="{'btn-default': fp == newStamp.fingerprint}" style="margin:0 10px 10px 0;">
+            <div fingerprint-thumb source="fp.thumbnail" thumn-width="35" thumb-height="35"></div>
+        </button>
+        <div class="btn-group">
+            <button class="btn btn-success" type="button" colorpicker colorpicker-position="top" ng-model="newStamp.color">Select a color</button>
+            <button type="submit" class="btn btn-primary"><i class="fa fa-send"></i> Save</button>
         </div>
     </div>
 </form>

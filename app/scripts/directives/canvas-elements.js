@@ -1,7 +1,7 @@
 'use strict';
 
 angular.module('fingerprintsApp').
-    directive('fingerprint', function($rootScope, $log){
+    directive('fingerprint', function(){
         return {
             restrict: 'A',
             scope: {
@@ -12,10 +12,10 @@ angular.module('fingerprintsApp').
             },
             template: '<canvas style="position:absolute; top: {{ top-width/2 }}px; left: {{ left-height/2 }}px;"></canvas>',
             replace: true,
-            link: function($scope, iElm, iAttrs, controller) {
+            link: function($scope, iElm) {
                 $scope.width = 80;
                 $scope.height = 80;
-                $scope.$watch('source', function(newVal, oldVal) {
+                $scope.$watch('source', function(newVal) {
                     Caman(iElm[0], newVal, function () {
                         $scope.width = this.width;
                         $scope.height = this.height;
@@ -23,7 +23,7 @@ angular.module('fingerprintsApp').
                         this.render();
                     });
                 });
-                $scope.$watch('color', function(newVal, oldVal) {
+                $scope.$watch('color', function(newVal) {
                     Caman(iElm[0], $scope.source, function () {
                         this.colorize(newVal, 100);
                         this.render();
@@ -32,7 +32,7 @@ angular.module('fingerprintsApp').
             }
         };
     }).
-    directive('stamp', function($rootScope, $log){
+    directive('stamp', function(){
         return {
             restrict: 'A',
             scope: {
@@ -40,10 +40,10 @@ angular.module('fingerprintsApp').
             },
             template: '<canvas style="position:absolute; top: {{ model.top-width/2 }}px; left: {{ model.left-height/2 }}px;"></canvas>',
             replace: true,
-            link: function($scope, iElm, iAttrs, controller) {
+            link: function($scope, iElm) {
                 $scope.width = 80;
                 $scope.height = 80;
-                $scope.$watch('model.fingerprint.thumbnail', function(newVal, oldVal){
+                $scope.$watch('model.fingerprint.thumbnail', function(newVal){
                     Caman(iElm[0], newVal, function () {
                         $scope.width = this.width;
                         $scope.height = this.height;
@@ -54,7 +54,7 @@ angular.module('fingerprintsApp').
             }
         };
     }).
-    directive('fingerprintThumb', function($rootScope, $log){
+    directive('fingerprintThumb', function(){
         return {
             restrict: 'A',
             scope: {
@@ -64,8 +64,8 @@ angular.module('fingerprintsApp').
             },
             template: '<canvas width="{{ thumbWidth }}" height="{{ thumbHeight }}"></canvas>',
             replace: true,
-            link: function($scope, iElm, iAttrs, controller) {
-                $scope.$watch('source', function(newVal, oldVal) {
+            link: function($scope, iElm, iAttrs) {
+                $scope.$watch('source', function(newVal) {
                     Caman(iElm[0], newVal, function () {
                         this.resize({
                             width: iAttrs.thumbWidth,

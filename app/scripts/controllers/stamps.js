@@ -3,6 +3,15 @@
 angular.module('fingerprintsApp')
 .controller('StampFormController', function ($scope, $state, $log, FB_URL, FingerprintsService, $firebase){
 
+    function resetNewStamp(){
+        $scope.newStamp = {
+            left: 350,
+            top: 160,
+            color: '#000000',
+            fingerprint: {}
+        };
+    }
+
     $scope.fingerprints = FingerprintsService.getFingerprints();
     resetNewStamp();
 
@@ -10,8 +19,6 @@ angular.module('fingerprintsApp')
     var auth = new FirebaseSimpleLogin(stampsRef, function(error, user) {
         $scope.user = user;
         $scope.stamps = $firebase(stampsRef);
-
-        var usersRef = new Firebase(FB_URL + '/users');
     });
 
     $scope.login = function(){
@@ -31,7 +38,7 @@ angular.module('fingerprintsApp')
         $scope.stamps.$add(newStamp);
         $state.go('stamps.list');
         resetNewStamp();
-    }
+    };
 
     $scope.selectFingerprint = function(fp){
         $scope.newStamp.fingerprint = fp;
@@ -40,17 +47,8 @@ angular.module('fingerprintsApp')
         $scope.newStamp.left = event.offsetX;
         $scope.newStamp.top = event.offsetY;
     };
-
-    function resetNewStamp(){
-        $scope.newStamp = {
-            left: 350,
-            top: 160,
-            color: '#000000',
-            fingerprint: {}
-        }
-    }
 }).
-controller('StampsController', function($scope, $timeout, $firebase, FB_URL, FingerprintsService){
+controller('StampsController', function($scope, $timeout, $firebase, FB_URL, FingerprintsService, PresenceService){
 
     $scope.fingerprints = FingerprintsService.getFingerprints();
     var stampsRef = new Firebase(FB_URL + '/stamps');

@@ -64,4 +64,36 @@ angular.module('fingerprintsApp')
             return fingerprints;
         }
     };
+}).
+factory('PresenceService', function($rootScope, FB_URL) {
+
+    var onlineUsers = 0,
+        // Create our references
+        listRef = new Firebase(FB_URL + '/presence'),
+        // This creates a unique reference for each user
+        userRef = listRef.push(),
+        presenceRef = new Firebase(FB_URL + '/.info/connected');
+
+    // Add ourselves to presence list when online.
+    presenceRef.on('value', function(snap) {
+        if (snap.val()) {
+            userRef.set(true);
+            // Remove ourselves when we disconnect.
+            userRef.onDisconnect().remove();
+        }
+    });
+
+    // Get the user count and notify the application
+    listRef.on('value', function(snap) {
+        onlineUsers = snap.numChildren();
+        $rootScope.$broadcast('onOnlineUser');
+    });
+
+    var getOnlineUserCount = function() {
+        return onlineUsers;
+    };
+
+    return {
+        getOnlineUserCount: getOnlineUserCount
+    };
 });

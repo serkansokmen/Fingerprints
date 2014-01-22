@@ -1,10 +1,9 @@
-
 <div ng-if="showWarning">
-    <div class="alert alert-success" ng-show="connected">
+    <!-- <div class="alert alert-success" ng-show="connected" ng-class="{'animated slideInDown': connected, 'animated slideOutUp': !connected}">
         <button type="button" class="close" data-dismiss="alert" aria-hidden="true">&times;</button>
         You are online.
-    </div>
-    <div class="alert alert-warning" ng-hide="connected">
+    </div> -->
+    <div class="alert alert-warning" ng-hide="connected" ng-class="{'animated slideInDown': !connected, 'animated slideOutUp': connected}">
         <button type="button" class="close" data-dismiss="alert" aria-hidden="true">&times;</button>
         <strong>Warning!</strong> Disconnected from live stream ...
     </div>
