@@ -29,26 +29,29 @@
         <![endif]-->
 
         <!-- Add your site or application content here -->
-        <div class="container animated slideInDown">
+        <div class="container">
             <nav class="navbar navbar-default" role="navigation">
                 <!-- Brand and toggle get grouped for better mobile display -->
                 <div class="navbar-header">
-                    <a class="navbar-brand" ui-sref="stamps.form"><fa class="fa fa-plus"></fa> Create</a>
+                    <a class="navbar-brand" ui-sref="home"><i class="fa fa-home"></i> Home</a>
                 </div>
 
                 <!-- Collect the nav links, forms, and other content for toggling -->
                 <ul class="nav navbar-nav pull-right">
-                    <li><a ui-sref="stamps.list"><i class="fa fa-picture-o"></i> Show Composite</a></li>
+                    <li><a ui-sref="stamp"><i class="fa fa-plus"></i> Create</a></li>
+                    <li><a ui-sref="stamps"><i class="fa fa-picture-o"></i> Show Composite</a></li>
                 </ul>
             </nav>
-            <div ui-view></div>
+            <div class="row">
+                <div class="col-xs-6 col-sm-6 col-md-6 col-lg-6"><i class="fa fa-group"></i> <strong>{{ totalViewers }}</strong> <span ng-if="totalViewers > 1">users</span><span ng-if="totalViewers == 1">user</span> online</div>
+                <div class="col-xs-6 col-sm-6 col-md-6 col-lg-6"><i class="fa pull-right" ng-class="{'fa-circle text-success': connected, 'fa-circle-o text-muted': !connected}"></i></div>
+            </div>
             <br>
-            <footer class="footer">
-                <div class="pull-left">&copy; Fingerprints 2014</div>
-                <div class="pull-right">
-                    <i class="fa fa-group"></i>
-                        Currently <strong>{{ totalViewers }}</strong> users are viewing
-                </div>
+            <div ui-view class="dn-fade-left"></div>
+
+            <br>
+            <footer class="footer" style="font-size:12px;">
+                &copy; Fingerprints 2014
             </footer>
         </div>
 
@@ -59,9 +62,9 @@
         <![endif]-->
         <!-- build:js scripts/vendor.js -->
         <!-- bower:js -->
-        <script src="bower_components/jquery/jquery.js"></script>
-        <script src="bower_components/angular/angular.js"></script>
-        <script src="bower_components/bootstrap/dist/js/bootstrap.js"></script>
+        <script src="bower_components/jquery/jquery.min.js"></script>
+        <script src="bower_components/angular/angular.min.js"></script>
+        <script src="bower_components/bootstrap/dist/js/bootstrap.min.js"></script>
         <script src="bower_components/caman/dist/caman.min.js"></script>
         <script src="bower_components/caman/dist/caman.full.min.js"></script>
         <script src="bower_components/firebase/firebase.js"></script>
@@ -71,12 +74,12 @@
         <script src="//cdn.firebase.com/libs/angularfire/0.6.0/angularfire.js"></script>
 
         <!-- build:js scripts/modules.js -->
-        <script src="bower_components/angular-resource/angular-resource.js"></script>
-        <script src="bower_components/angular-cookies/angular-cookies.js"></script>
-        <script src="bower_components/angular-sanitize/angular-sanitize.js"></script>
-        <script src="bower_components/angular-ui-router/release/angular-ui-router.js"></script>
-        <script src="bower_components/angular-animate/angular-animate.js"></script>
-        <script src="bower_components/angular-ui-router/release/angular-ui-router.js"></script>
+        <script src="bower_components/angular-resource/angular-resource.min.js"></script>
+        <script src="bower_components/angular-cookies/angular-cookies.min.js"></script>
+        <script src="bower_components/angular-sanitize/angular-sanitize.min.js"></script>
+        <script src="bower_components/angular-ui-router/release/angular-ui-router.min.js"></script>
+        <script src="bower_components/angular-animate/angular-animate.min.js"></script>
+        <script src="bower_components/ngAnimate-animate.css/animate.js"></script>
         <script src="bower_components/angular-bootstrap-colorpicker/js/bootstrap-colorpicker-module.js"></script>
         <!-- endbuild -->
 

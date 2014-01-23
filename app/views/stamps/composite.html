@@ -1,0 +1,7 @@
+<div class="panel panel-default">
+    <div class="panel-body canvas-container">
+        <div ng-repeat="stamp in stamps | orderBy: '-createdAt'" style="position:relative;">
+            <div stamp model="stamp"></div>
+        </div>
+    </div>
+</div>

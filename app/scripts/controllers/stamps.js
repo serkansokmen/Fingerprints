@@ -3,7 +3,7 @@
 angular.module('fingerprintsApp')
 .controller('StampFormController', function ($scope, $state, $log, FB_URL, FingerprintsService, $firebase){
 
-    function resetNewStamp(){
+    $scope.resetNewStamp = function(){
         $scope.newStamp = {
             left: 350,
             top: 160,
@@ -13,7 +13,7 @@ angular.module('fingerprintsApp')
     }
 
     $scope.fingerprints = FingerprintsService.getFingerprints();
-    resetNewStamp();
+    $scope.resetNewStamp();
 
     var stampsRef = new Firebase(FB_URL + '/stamps');
     var auth = new FirebaseSimpleLogin(stampsRef, function(error, user) {
@@ -36,8 +36,8 @@ angular.module('fingerprintsApp')
         newStamp.userId = $scope.user.uid;
         newStamp.createdAt = new Date();
         $scope.stamps.$add(newStamp);
-        $state.go('stamps.list');
-        resetNewStamp();
+        $state.go('stamps');
+        $scope.resetNewStamp();
     };
 
     $scope.selectFingerprint = function(fp){
@@ -48,22 +48,39 @@ angular.module('fingerprintsApp')
         $scope.newStamp.top = event.offsetY;
     };
 }).
-controller('StampsController', function($scope, $timeout, $firebase, FB_URL, FingerprintsService, PresenceService){
+controller('StampsController', function($scope, $firebase, FB_URL, FingerprintsService, PresenceService){
+
+    var scheme = {
+        "users": {
+            "user1": {
+                "name": "Alice",
+                "stamp": "stamp1"
+            },
+            "user2": {
+                "name": "Bob",
+                "stamp": "stamp2"
+            }
+        },
+        "fingerprints": {
+            "fingerprint1": {
+                "thumbnail": "media/fingerprints/001_80x80_cropped.png",
+                "full": "media/fingerprints/001.png",
+                "medium": "media/fingerprints/001_medium.png",
+                "large": "media/fingerprints/001_large.png"
+            }
+        },
+        "stamps": {
+            "stamp1": {
+                "left": 350,
+                "top": 160,
+                "color": "#000000",
+                "fingerprint": "fingerprint1",
+                "owner": "user1"
+            }
+        }
+    };
 
     $scope.fingerprints = FingerprintsService.getFingerprints();
     var stampsRef = new Firebase(FB_URL + '/stamps');
     $scope.stamps = $firebase(stampsRef);
-
-    var connectedRef = new Firebase(FB_URL + '/.info/connected');
-
-    $scope.connected = false;
-    $scope.showWarning = true;
-    connectedRef.on('value', function(snap) {
-        $scope.connected = snap.val();
-        $scope.showWarning = true;
-        $timeout(function(){
-            $scope.showWarning = false;
-        }, 2000);
-    });
-
 });

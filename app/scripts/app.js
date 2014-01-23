@@ -5,6 +5,7 @@ angular.module('fingerprintsApp', [
     'ngResource',
     'ngSanitize',
     'ngAnimate',
+    'ngAnimate-animate.css',
     'colorpicker.module',
     'ui.router',
     'firebase'
@@ -17,17 +18,13 @@ config(function ($stateProvider, $urlRouterProvider){
             controller: 'HomeCtrl'
         }).
         state('stamps', {
-            url: '/stamps',
-            templateUrl: 'views/stamps/base.html'
-        }).
-        state('stamps.list', {
-            url: '/list',
-            templateUrl: 'views/stamps/list.html',
+            url: '/composite',
+            templateUrl: 'views/stamps/composite.html',
             controller: 'StampsController'
         }).
-        state('stamps.form', {
-            url: '/form',
-            templateUrl: 'views/stamps/form.html',
+        state('stamp', {
+            url: '/create',
+            templateUrl: 'views/stamps/create.html',
             controller: 'StampFormController'
         });
 
@@ -39,6 +36,11 @@ run(function ($rootScope, PresenceService){
     $rootScope.$on('onOnlineUser', function() {
         $rootScope.$apply(function() {
             $rootScope.totalViewers = PresenceService.getOnlineUserCount();
+        });
+    });
+    $rootScope.$on('onOnlineStatusChange', function() {
+        $rootScope.$apply(function() {
+            $rootScope.connected = PresenceService.getOnlineStatus();
         });
     });
 });
