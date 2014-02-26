@@ -1,6 +1,6 @@
 'use strict';
 
-angular.module('fingerprintsApp', [
+var app = angular.module('fingerprintsApp', [
     'ngCookies',
     'ngResource',
     'ngSanitize',
@@ -9,8 +9,10 @@ angular.module('fingerprintsApp', [
     'colorpicker.module',
     'ui.router',
     'firebase'
-]).
-config(function ($stateProvider, $urlRouterProvider){
+]);
+
+app
+.config(function ($stateProvider, $urlRouterProvider){
     $stateProvider.
         state('home', {
             url: '/',
@@ -29,9 +31,9 @@ config(function ($stateProvider, $urlRouterProvider){
         });
 
     $urlRouterProvider.otherwise('/');
-}).
-constant('FB_URL', 'https://fingerprints.firebaseio.com').
-run(function ($rootScope, PresenceService){
+})
+.constant('FIREBASE_URL', 'https://fingerprints.firebaseio.com')
+.run(function ($rootScope, PresenceService){
     $rootScope.totalViewers = 0;
     $rootScope.$on('onOnlineUser', function() {
         $rootScope.$apply(function() {

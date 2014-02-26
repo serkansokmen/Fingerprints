@@ -1,6 +1,5 @@
 'use strict';
 
-angular.module('fingerprintsApp')
-.controller('HomeCtrl', function () {
+app.controller('HomeCtrl', function () {
 
 });

@@ -22,6 +22,7 @@
     "angular": false,
     "Firebase": false,
     "FirebaseSimpleLogin": false,
-    "Caman": false
+    "Caman": false,
+    "app": false
   }
 }

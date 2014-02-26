@@ -1,6 +1,6 @@
 'use strict';
 
-angular.module('fingerprintsApp')
+app
 .service('FingerprintsService', function() {
 
     var fingerprints = [{
@@ -55,15 +55,15 @@ angular.module('fingerprintsApp')
             return fingerprints;
         }
     };
-}).
-factory('PresenceService', function($rootScope, FB_URL) {
+})
+.factory('PresenceService', function($rootScope, FIREBASE_URL) {
 
     var onlineUsers = 0,
         // Create our references
-        listRef = new Firebase(FB_URL + '/presence'),
+        listRef = new Firebase(FIREBASE_URL + '/presence'),
         // This creates a unique reference for each user
         userRef = listRef.push(),
-        presenceRef = new Firebase(FB_URL + '/.info/connected');
+        presenceRef = new Firebase(FIREBASE_URL + '/.info/connected');
 
     // Add ourselves to presence list when online.
     presenceRef.on('value', function(snap) {

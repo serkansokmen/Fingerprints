@@ -1,7 +1,7 @@
 'use strict';
 
-angular.module('fingerprintsApp')
-.controller('StampFormController', function ($scope, $state, $log, FB_URL, FingerprintsService, $firebase){
+app
+.controller('StampFormController', function ($scope, $state, $log, FIREBASE_URL, FingerprintsService, $firebase){
 
     $scope.resetNewStamp = function(){
         $scope.newStamp = {
@@ -15,7 +15,7 @@ angular.module('fingerprintsApp')
     $scope.fingerprints = FingerprintsService.getFingerprints();
     $scope.resetNewStamp();
 
-    var stampsRef = new Firebase(FB_URL + '/stamps');
+    var stampsRef = new Firebase(FIREBASE_URL + '/stamps');
     var auth = new FirebaseSimpleLogin(stampsRef, function(error, user) {
         $scope.user = user;
         $scope.stamps = $firebase(stampsRef);
@@ -47,8 +47,8 @@ angular.module('fingerprintsApp')
         $scope.newStamp.left = event.offsetX;
         $scope.newStamp.top = event.offsetY;
     };
-}).
-controller('StampsController', function($scope, $firebase, FB_URL, FingerprintsService, PresenceService){
+})
+.controller('StampsController', function($scope, $firebase, FIREBASE_URL, FingerprintsService, PresenceService){
 
     var scheme = {
         "users": {
@@ -81,6 +81,6 @@ controller('StampsController', function($scope, $firebase, FB_URL, FingerprintsS
     };
 
     $scope.fingerprints = FingerprintsService.getFingerprints();
-    var stampsRef = new Firebase(FB_URL + '/stamps');
+    var stampsRef = new Firebase(FIREBASE_URL + '/stamps');
     $scope.stamps = $firebase(stampsRef);
 });
