@@ -1,6 +1,6 @@
 'use strict';
 
-app
+angular.module('fingerprintsApp')
 .controller('StampFormController', function ($scope, $state, $log, FIREBASE_URL, FingerprintsService, $firebase){
 
     $scope.resetNewStamp = function(){
@@ -10,7 +10,7 @@ app
             color: '#000000',
             fingerprint: {}
         };
-    }
+    };
 
     $scope.fingerprints = FingerprintsService.getFingerprints();
     $scope.resetNewStamp();
@@ -48,37 +48,7 @@ app
         $scope.newStamp.top = event.offsetY;
     };
 })
-.controller('StampsController', function($scope, $firebase, FIREBASE_URL, FingerprintsService, PresenceService){
-
-    var scheme = {
-        "users": {
-            "user1": {
-                "name": "Alice",
-                "stamp": "stamp1"
-            },
-            "user2": {
-                "name": "Bob",
-                "stamp": "stamp2"
-            }
-        },
-        "fingerprints": {
-            "fingerprint1": {
-                "thumbnail": "media/fingerprints/001_80x80_cropped.png",
-                "full": "media/fingerprints/001.png",
-                "medium": "media/fingerprints/001_medium.png",
-                "large": "media/fingerprints/001_large.png"
-            }
-        },
-        "stamps": {
-            "stamp1": {
-                "left": 350,
-                "top": 160,
-                "color": "#000000",
-                "fingerprint": "fingerprint1",
-                "owner": "user1"
-            }
-        }
-    };
+.controller('StampsController', function($scope, $firebase, FIREBASE_URL, FingerprintsService){
 
     $scope.fingerprints = FingerprintsService.getFingerprints();
     var stampsRef = new Firebase(FIREBASE_URL + '/stamps');

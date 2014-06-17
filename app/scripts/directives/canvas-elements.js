@@ -1,6 +1,6 @@
 'use strict';
 
-app
+angular.module('fingerprintsApp')
 .directive('fingerprint', function(){
     return {
         restrict: 'A',
@@ -32,7 +32,7 @@ app
         }
     };
 })
-.directive('stamp', function($interval){
+.directive('stamp', function(){
     return {
         restrict: 'A',
         scope: {

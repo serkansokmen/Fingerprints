@@ -1,4 +1,4 @@
-<div class="panel panel-default">
+<div class="panel panel-default" ng-if="user">
     <div class="panel-body canvas-container dn-fade-up" style="position:relative;" mover="" ng-click="moveFingerprint($event)">
         <div fingerprint
         color="newStamp.color"
@@ -9,7 +9,7 @@
         source="fp.thumbnail"></div>
     </div>
 </div>
-<div class="well well-sm">
+<div class="well well-sm" ng-if="user">
     <label ng-class="{'text-muted': !user}">Choose a fingerprint</label>
     <button type="button" class="btn btn-link btn-xs animated-repeater" ng-disabled="!user" ng-click="selectFingerprint(fp)" ng-repeat="fp in fingerprints" ng-class="{'btn-default': fp == newStamp.fingerprint}" style="margin:0 10px 10px 0;">
         <div fingerprint-thumb source="fp.thumbnail" thumn-width="35" thumb-height="35"></div>

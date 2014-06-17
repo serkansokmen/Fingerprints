@@ -1,23 +1,18 @@
 'use strict';
 
-var app = angular.module('fingerprintsApp', [
+angular.module('fingerprintsApp', [
     'ngCookies',
     'ngResource',
     'ngSanitize',
-    'ngAnimate',
-    'ngAnimate-animate.css',
     'colorpicker.module',
     'ui.router',
     'firebase'
-]);
-
-app
+])
 .config(function ($stateProvider, $urlRouterProvider){
     $stateProvider.
         state('home', {
             url: '/',
-            templateUrl: 'views/home.html',
-            controller: 'HomeCtrl'
+            templateUrl: 'views/home.html'
         }).
         state('stamps', {
             url: '/composite',

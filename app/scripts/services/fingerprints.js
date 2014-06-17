@@ -1,6 +1,6 @@
 'use strict';
 
-app
+angular.module('fingerprintsApp')
 .service('FingerprintsService', function() {
 
     var fingerprints = [{

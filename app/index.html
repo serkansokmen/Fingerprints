@@ -9,15 +9,15 @@
         <title>Fingerprints</title>
         <meta name="description" content="">
         <meta name="viewport" content="width=device-width">
+
         <!-- Place favicon.ico and apple-touch-icon.png in the root directory -->
+
+        <link rel="stylesheet" href="//maxcdn.bootstrapcdn.com/font-awesome/4.1.0/css/font-awesome.min.css" />
         <!-- build:css styles/vendor.css -->
         <!-- bower:css -->
         <link rel="stylesheet" href="bower_components/bootstrap/dist/css/bootstrap.css" />
-        <link rel="stylesheet" href="bower_components/animate.css/animate.css" />
         <!-- endbower -->
         <link rel="stylesheet" href="bower_components/bootswatch/flatly/bootstrap.css" />
-        <link rel="stylesheet" href="bower_components/animate.css/animate.css">
-        <link rel="stylesheet" href="bower_components/font-awesome/css/font-awesome.css" />
         <link rel="stylesheet" href="bower_components/angular-bootstrap-colorpicker/css/colorpicker.css" />
         <!-- endbuild -->
         <!-- build:css({.tmp,app}) styles/main.css -->
@@ -44,7 +44,11 @@
                 </ul>
             </nav>
             <div class="row">
-                <div class="col-xs-6 col-sm-6 col-md-6 col-lg-6"><i class="fa fa-group"></i> <strong>{{ totalViewers }}</strong> <span ng-if="totalViewers > 1">users</span><span ng-if="totalViewers == 1">user</span> online</div>
+                <div class="col-xs-6 col-sm-6 col-md-6 col-lg-6"><i class="fa fa-group"></i>
+                    <span ng-pluralize count="totalViewers" when="{  '0': 'No user is online.',
+                                                                    'one': '1 person is viewing.',
+                                                                    'other': '{} people are viewing.'}"></span>
+                </div>
                 <div class="col-xs-6 col-sm-6 col-md-6 col-lg-6"><i class="fa pull-right" ng-class="{'fa-circle text-success': connected, 'fa-circle-o text-muted': !connected}"></i></div>
             </div>
             <br>
@@ -69,7 +73,6 @@
         <script src="bower_components/angular-resource/angular-resource.js"></script>
         <script src="bower_components/angular-cookies/angular-cookies.js"></script>
         <script src="bower_components/angular-sanitize/angular-sanitize.js"></script>
-        <script src="bower_components/angular-animate/angular-animate.js"></script>
         <script src="bower_components/angular-ui-router/release/angular-ui-router.js"></script>
         <script src="bower_components/caman/dist/caman.min.js"></script>
         <script src="bower_components/caman/dist/caman.full.min.js"></script>
@@ -84,14 +87,11 @@
         <script src="bower_components/angular-cookies/angular-cookies.min.js"></script>
         <script src="bower_components/angular-sanitize/angular-sanitize.min.js"></script>
         <script src="bower_components/angular-ui-router/release/angular-ui-router.min.js"></script>
-        <script src="bower_components/angular-animate/angular-animate.min.js"></script>
-        <script src="bower_components/ngAnimate-animate.css/animate.js"></script>
         <script src="bower_components/angular-bootstrap-colorpicker/js/bootstrap-colorpicker-module.js"></script>
         <!-- endbuild -->
 
         <!-- build:js({.tmp,app}) scripts/scripts.js -->
         <script src="scripts/app.js"></script>
-        <script src="scripts/controllers/home.js"></script>
         <script src="scripts/controllers/stamps.js"></script>
         <script src="scripts/services/fingerprints.js"></script>
         <script src="scripts/directives/canvas-elements.js"></script>
