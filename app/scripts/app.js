@@ -8,6 +8,9 @@ angular.module('fingerprintsApp', [
     'ui.router',
     'firebase'
 ])
+
+.constant('FIREBASE_URL', 'https://fingerprints.firebaseio.com')
+
 .config(function ($stateProvider, $urlRouterProvider){
     $stateProvider.
         state('home', {
@@ -27,9 +30,9 @@ angular.module('fingerprintsApp', [
 
     $urlRouterProvider.otherwise('/');
 })
-.constant('FIREBASE_URL', 'https://fingerprints.firebaseio.com')
 .run(function ($rootScope, PresenceService){
     $rootScope.totalViewers = 0;
+
     $rootScope.$on('onOnlineUser', function() {
         $rootScope.$apply(function() {
             $rootScope.totalViewers = PresenceService.getOnlineUserCount();
